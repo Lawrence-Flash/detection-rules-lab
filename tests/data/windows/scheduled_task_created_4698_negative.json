@@ -1,0 +1,11 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic 4698 for a normal program under Program Files.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 4698,
+    "SubjectUserName": "labadmin",
+    "TaskName": "\\Lab\\Health",
+    "TaskContent": "<Task><Actions><Exec><Command>C:\\Program Files\\LabTools\\healthcheck.exe</Command><Arguments>/quiet</Arguments></Exec></Actions></Task>"
+  }
+]

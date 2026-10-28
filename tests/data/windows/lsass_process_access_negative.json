@@ -1,0 +1,20 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic Sysmon 10 against lsass.exe with query-only access 0x1000.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 10,
+    "SourceImage": "C:\\Windows\\System32\\svchost.exe",
+    "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+    "GrantedAccess": "0x1000"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic Sysmon 10 with mask 0x1410 against notepad.exe, not lsass.exe.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 10,
+    "SourceImage": "C:\\Users\\Public\\labdump.exe",
+    "TargetImage": "C:\\Windows\\System32\\notepad.exe",
+    "GrantedAccess": "0x1410"
+  }
+]

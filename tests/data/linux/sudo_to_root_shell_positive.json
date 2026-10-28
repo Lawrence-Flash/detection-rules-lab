@@ -1,0 +1,9 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic successful sudo into a root shell.",
+    "hostname": "lab-linux-01",
+    "process": "sudo",
+    "message": "labuser : TTY=pts/1 ; PWD=/home/labuser ; USER=root ; COMMAND=/bin/su -"
+  }
+]

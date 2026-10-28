@@ -1,0 +1,16 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic read of authorized_keys. Reading is not a write.",
+    "hostname": "lab-linux-01",
+    "image": "/bin/cat",
+    "command_line": "cat /home/labuser/.ssh/authorized_keys"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic append to an unrelated file.",
+    "hostname": "lab-linux-01",
+    "image": "/bin/bash",
+    "command_line": "bash -c 'echo lab-note >> /tmp/lab-notes.txt'"
+  }
+]

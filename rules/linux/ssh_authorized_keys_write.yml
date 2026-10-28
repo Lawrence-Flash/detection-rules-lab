@@ -1,0 +1,33 @@
+title: Linux SSH authorized_keys Write
+id: 3c609f75-dac9-4bf6-b162-dff46afc1725
+status: test
+description: |
+  Matches a command line that mentions authorized_keys and also appends or
+  uses tee. Reading the file with cat is not a match. T1098.004 is adding a
+  key so a later SSH login succeeds. The rule does not see edits made inside
+  an interactive editor, because that command line is often just the editor.
+references:
+  - https://attack.mitre.org/techniques/T1098/004/
+  - https://man7.org/linux/man-pages/man8/sshd.8.html
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: linux
+  category: process_creation
+  definition: Normalized process start. command_line is the full command line.
+detection:
+  selection_file:
+    command_line|contains: 'authorized_keys'
+  selection_write:
+    command_line|contains:
+      - '>>'
+      - 'tee '
+  condition: selection_file and selection_write
+falsepositives:
+  - An administrator adding their own public key.
+  - A bootstrap script that installs a management key.
+level: high
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1098.004

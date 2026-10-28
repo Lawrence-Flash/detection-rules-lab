@@ -1,0 +1,22 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic traversal toward /etc/passwd. 203.0.113.70 is TEST-NET-3.",
+    "host": "lab-web.example",
+    "method": "GET",
+    "uri": "/download?file=../../../../etc/passwd",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "status": 400,
+    "client_ip": "203.0.113.70"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic percent-encoded traversal.",
+    "host": "lab-web.example",
+    "method": "GET",
+    "uri": "/download?file=%2e%2e%2f%2e%2e%2fetc/passwd",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "status": 400,
+    "client_ip": "203.0.113.71"
+  }
+]

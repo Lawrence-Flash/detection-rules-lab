@@ -1,0 +1,23 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic sudo to root that runs apt, not a shell.",
+    "hostname": "lab-linux-01",
+    "process": "sudo",
+    "message": "labuser : TTY=pts/1 ; PWD=/home/labuser ; USER=root ; COMMAND=/usr/bin/apt update"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic shell command that is not targeted at root.",
+    "hostname": "lab-linux-01",
+    "process": "sudo",
+    "message": "labuser : TTY=pts/1 ; PWD=/home/labuser ; USER=labuser ; COMMAND=/bin/bash"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic failed sudo. The command text is present, but the line says the user is not allowed.",
+    "hostname": "lab-linux-01",
+    "process": "sudo",
+    "message": "labuser : user NOT in sudoers ; TTY=pts/1 ; PWD=/home/labuser ; USER=root ; COMMAND=/bin/su -"
+  }
+]

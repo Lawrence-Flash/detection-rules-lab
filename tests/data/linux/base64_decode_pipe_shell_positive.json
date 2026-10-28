@@ -1,0 +1,9 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic decode piped to bash. The base64 text is not a payload.",
+    "hostname": "lab-linux-01",
+    "image": "/bin/bash",
+    "command_line": "bash -c 'echo U3ludGhldGljTGFi | base64 -d | bash'"
+  }
+]

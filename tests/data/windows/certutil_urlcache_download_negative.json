@@ -1,0 +1,20 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic certutil hash of a local file. No urlcache and no URL.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 1,
+    "Image": "C:\\Windows\\System32\\certutil.exe",
+    "CommandLine": "certutil.exe -hashfile C:\\Windows\\System32\\drivers\\etc\\hosts SHA256",
+    "User": "LAB\\labuser"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic download with curl.exe. The tool is not certutil.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 1,
+    "Image": "C:\\Windows\\System32\\curl.exe",
+    "CommandLine": "curl.exe http://203.0.113.40/lab-tool.bin -o C:\\Users\\Public\\lab-tool.bin",
+    "User": "LAB\\labuser"
+  }
+]

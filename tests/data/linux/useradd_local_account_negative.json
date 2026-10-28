@@ -1,0 +1,16 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic usermod of an existing account. The account was not created here.",
+    "hostname": "lab-linux-01",
+    "process": "usermod",
+    "message": "change user 'labuser' shell from /bin/sh to /bin/bash"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic useradd that failed before creating the account.",
+    "hostname": "lab-linux-01",
+    "process": "useradd",
+    "message": "failed adding user 'svc-lab', exit code 9"
+  }
+]

@@ -1,0 +1,30 @@
+title: Windows Security Log Cleared
+id: 27c0921b-fc8b-46d9-b2c3-2f36b1182376
+status: test
+description: |
+  Matches Security event 1102, which Windows writes when the Security audit
+  log is cleared. In ATT&CK v20 that behavior is T1685.005. The older id
+  T1070.001 was revoked when Indicator Removal was split and this behavior
+  moved under Disable or Modify Tools. Event 1100 means the event service
+  shut down, and 4719 means the audit policy changed. Neither is a cleared
+  log. The rule cannot tell an attacker from an administrator.
+references:
+  - https://attack.mitre.org/techniques/T1685/005/
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-1102
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: windows
+  service: security
+  definition: Security event 1102. A single EventID is the whole detection.
+detection:
+  selection:
+    EventID: 1102
+  condition: selection
+falsepositives:
+  - An administrator clearing the Security log during documented maintenance.
+  - A log-forwarding agent that clears a local log after a successful archive, if that is how the host is built.
+level: high
+tags:
+  - attack.defense-impairment
+  - attack.t1685.005

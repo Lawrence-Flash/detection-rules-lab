@@ -1,0 +1,22 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic document about password policy. The URI has neither ../ nor /etc/passwd.",
+    "host": "lab-web.example",
+    "method": "GET",
+    "uri": "/docs/password-policy.html",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "status": 200,
+    "client_ip": "198.51.100.20"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic file download with a normal name.",
+    "host": "lab-web.example",
+    "method": "GET",
+    "uri": "/files/report.pdf",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "status": 200,
+    "client_ip": "198.51.100.21"
+  }
+]

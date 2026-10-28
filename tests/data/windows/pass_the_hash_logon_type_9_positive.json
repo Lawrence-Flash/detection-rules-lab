@@ -1,0 +1,14 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic 4624 type 9 / seclogo / Negotiate. 127.0.0.1 is loopback because this logon is local.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 4624,
+    "LogonType": 9,
+    "LogonProcessName": "seclogo",
+    "AuthenticationPackageName": "Negotiate",
+    "TargetUserName": "labadmin",
+    "IpAddress": "127.0.0.1",
+    "WorkstationName": "LAB-WIN-01"
+  }
+]

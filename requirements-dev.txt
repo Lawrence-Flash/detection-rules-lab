@@ -1,0 +1,6 @@
+# Optional tools for `sigma check` and `python3 -m rulelab convert`.
+# validate, test, and coverage use the Python standard library only.
+sigma-cli==3.1.0
+pySigma==1.5.1
+pySigma-backend-elasticsearch==2.1.1
+pysigma-backend-splunk==2.1.0

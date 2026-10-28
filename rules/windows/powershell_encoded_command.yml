@@ -1,0 +1,39 @@
+title: Windows Encoded PowerShell
+id: 88affd9e-a567-4b56-af2a-c1ba04cd761d
+status: test
+description: |
+  Matches powershell.exe or pwsh.exe started with an encoded-command flag.
+  Running PowerShell is T1059.001. Encoding the command so it is harder to
+  read is T1027.010. The encoded bytes in the lab event decode to a harmless
+  synthetic string. A normal -Command or -File start is not a match.
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+  - https://attack.mitre.org/techniques/T1027/010/
+  - https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: windows
+  category: process_creation
+  definition: Sysmon event 1 style fields. Image is the executable path. CommandLine is the full command line.
+detection:
+  selection_image:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_flag:
+    CommandLine|contains:
+      - ' -enc '
+      - ' -encodedcommand '
+      - ' /enc '
+      - ' /encodedcommand '
+  condition: selection_image and selection_flag
+falsepositives:
+  - Management tools that legitimately launch encoded PowerShell.
+  - Software installers that wrap a short script with -EncodedCommand.
+level: high
+tags:
+  - attack.execution
+  - attack.stealth
+  - attack.t1027.010
+  - attack.t1059.001

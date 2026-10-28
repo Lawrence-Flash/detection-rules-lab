@@ -1,0 +1,9 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic crontab install. REPLACE is the change, not a job execution.",
+    "hostname": "lab-linux-01",
+    "process": "crontab",
+    "message": "(root) REPLACE (root)"
+  }
+]

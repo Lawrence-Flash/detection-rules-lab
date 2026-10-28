@@ -1,0 +1,31 @@
+title: Linux Local User Created
+id: f0f7438d-ad80-44fb-8aec-cd9603b45805
+status: experimental
+description: |
+  Matches the useradd or adduser syslog line that records a new local account.
+  Creating an account is T1136.001. Adding that account to a privileged group
+  is a different technique and is not what this rule sees.
+references:
+  - https://attack.mitre.org/techniques/T1136/001/
+  - https://man7.org/linux/man-pages/man8/useradd.8.html
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: linux
+  service: auth
+  definition: useradd message body. process is useradd or adduser.
+detection:
+  selection_process:
+    process:
+      - useradd
+      - adduser
+  selection_message:
+    message|startswith: 'new user: name='
+  condition: selection_process and selection_message
+falsepositives:
+  - Account provisioning by an administrator or a configuration tool.
+  - A lab image build that creates service accounts.
+level: medium
+tags:
+  - attack.persistence
+  - attack.t1136.001

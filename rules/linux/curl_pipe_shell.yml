@@ -1,0 +1,44 @@
+title: Linux Curl Piped to a Shell
+id: a33f0692-dd1b-43cc-86b2-4f0def72b647
+status: test
+description: |
+  Matches a shell process whose command line downloads with curl and pipes
+  the result into bash or sh. The pipe is T1059.004 (the shell) and the
+  download is T1105. A curl that only writes a file is not a match.
+  The rule does not cover wget, python, or a download that is saved and
+  executed as a second command.
+references:
+  - https://attack.mitre.org/techniques/T1059/004/
+  - https://attack.mitre.org/techniques/T1105/
+  - https://man7.org/linux/man-pages/man1/curl.1.html
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: linux
+  category: process_creation
+  definition: Normalized process start. image is the executable path. command_line is the full command line.
+detection:
+  selection_shell:
+    image|endswith:
+      - '/bash'
+      - '/sh'
+      - '/dash'
+      - '/zsh'
+  selection_curl:
+    command_line|contains: 'curl '
+  selection_pipe:
+    command_line|contains:
+      - '| bash'
+      - '| sh'
+      - '|bash'
+      - '|sh'
+  condition: selection_shell and selection_curl and selection_pipe
+falsepositives:
+  - A documented install script that is piped to a shell on purpose.
+  - A build job whose command line contains both tokens for a benign reason.
+level: high
+tags:
+  - attack.execution
+  - attack.command-and-control
+  - attack.t1059.004
+  - attack.t1105

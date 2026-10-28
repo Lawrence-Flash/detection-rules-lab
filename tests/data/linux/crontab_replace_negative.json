@@ -1,0 +1,16 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic cron job execution. CMD is not an install.",
+    "hostname": "lab-linux-01",
+    "process": "CRON",
+    "message": "(root) CMD (/usr/bin/run-parts /etc/cron.hourly)"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic crontab editor open. BEGIN EDIT does not install a job.",
+    "hostname": "lab-linux-01",
+    "process": "crontab",
+    "message": "(labuser) BEGIN EDIT (labuser)"
+  }
+]

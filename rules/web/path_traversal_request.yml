@@ -1,0 +1,35 @@
+title: Web Path Traversal Request
+id: a43b112e-0b8f-4b07-8265-e7e51c8ab344
+status: test
+description: |
+  Matches a web request URI that contains a directory traversal sequence or
+  a direct request for /etc/passwd or /windows/win.ini. Against a public web
+  application this is T1190, the same technique as other exploit attempts,
+  with a different payload. A document that merely discusses passwords is
+  not a match.
+references:
+  - https://attack.mitre.org/techniques/T1190/
+  - https://owasp.org/www-community/attacks/Path_Traversal
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  category: webserver
+  definition: Normalized access log. uri is the path and query as the server received it.
+detection:
+  selection:
+    uri|contains:
+      - '../'
+      - '..\'
+      - '%2e%2e/'
+      - '%2e%2e%2f'
+      - '%2e%2e%5c'
+      - '/etc/passwd'
+      - '/windows/win.ini'
+  condition: selection
+falsepositives:
+  - An application whose normal routes contain the character sequence ../ in an encoded identifier.
+  - A penetration test against an application the team owns.
+level: high
+tags:
+  - attack.initial-access
+  - attack.t1190

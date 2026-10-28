@@ -1,0 +1,30 @@
+title: Windows User Added to Local Administrators
+id: 904d36ff-e276-4c86-a830-73c158ef7a7b
+status: test
+description: |
+  Matches Security event 4732 when the target group SID is S-1-5-32-544,
+  the built-in local Administrators group. The SID is used because the group
+  name is translated on non-English systems. Adding an account to that group
+  is T1098.007. Removing a member is event 4733 and is not a match.
+references:
+  - https://attack.mitre.org/techniques/T1098/007/
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4732
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: windows
+  service: security
+  definition: Security event 4732. TargetSid is the group SID. MemberName is the account that was added.
+detection:
+  selection:
+    EventID: 4732
+    TargetSid: 'S-1-5-32-544'
+  condition: selection
+falsepositives:
+  - IT provisioning that adds a workstation admin during a join or build.
+  - A local break-glass account created under a change ticket.
+level: high
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1098.007

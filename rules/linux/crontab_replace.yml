@@ -1,0 +1,30 @@
+title: Linux Crontab Replace
+id: 541342d6-2113-468b-bfa7-5974fd8adb8f
+status: experimental
+description: |
+  Matches crontab's REPLACE message, which is written when a user's crontab
+  is installed. A later CRON CMD line means a job ran. That is not this rule.
+  T1053.003 covers cron. REPLACE is the change, not proof the new job is malicious.
+references:
+  - https://attack.mitre.org/techniques/T1053/003/
+  - https://man7.org/linux/man-pages/man1/crontab.1.html
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: linux
+  service: cron
+  definition: crontab syslog body in message. process is crontab.
+detection:
+  selection:
+    process: crontab
+    message|contains: ') REPLACE ('
+  condition: selection
+falsepositives:
+  - An administrator installing a backup or maintenance crontab.
+  - Configuration management replacing a crontab on a schedule.
+level: medium
+tags:
+  - attack.execution
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1053.003

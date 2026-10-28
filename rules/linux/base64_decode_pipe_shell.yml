@@ -1,0 +1,40 @@
+title: Linux Base64 Decode Piped to a Shell
+id: 95b6875c-5f4d-4aba-911c-27eeca889143
+status: test
+description: |
+  Matches a command line that runs base64 decode and pipes the result into
+  bash or sh. Decoding is T1140. The shell is T1059.004. Decoding to a file
+  and stopping there is not a match. There is no claim about what the decoded
+  bytes do.
+references:
+  - https://attack.mitre.org/techniques/T1140/
+  - https://attack.mitre.org/techniques/T1059/004/
+  - https://man7.org/linux/man-pages/man1/base64.1.html
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: linux
+  category: process_creation
+  definition: Normalized process start. command_line is the full command line.
+detection:
+  selection_base64:
+    command_line|contains: 'base64'
+  selection_flag:
+    command_line|contains:
+      - ' -d'
+      - ' --decode'
+  selection_pipe:
+    command_line|contains:
+      - '| bash'
+      - '| sh'
+      - '|bash'
+      - '|sh'
+  condition: selection_base64 and selection_flag and selection_pipe
+falsepositives:
+  - A maintenance script that decodes a known archive and feeds it to a shell.
+level: high
+tags:
+  - attack.execution
+  - attack.stealth
+  - attack.t1059.004
+  - attack.t1140

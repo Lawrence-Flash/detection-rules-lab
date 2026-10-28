@@ -1,0 +1,18 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic event 1100. The event service shut down. The log was not cleared.",
+    "Computer": "LAB-WIN-01.example",
+    "Channel": "Security",
+    "EventID": 1100,
+    "SubjectUserName": "labadmin"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic event 4719. The audit policy changed. The log was not cleared.",
+    "Computer": "LAB-WIN-01.example",
+    "Channel": "Security",
+    "EventID": 4719,
+    "SubjectUserName": "labadmin"
+  }
+]

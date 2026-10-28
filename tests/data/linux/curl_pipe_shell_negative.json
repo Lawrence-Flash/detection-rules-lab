@@ -1,0 +1,16 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic curl that writes a file and does not pipe into a shell.",
+    "hostname": "lab-linux-01",
+    "image": "/usr/bin/curl",
+    "command_line": "curl -fsSL http://203.0.113.50/file.tar.gz -o /tmp/file.tar.gz"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic pipe into bash with no curl.",
+    "hostname": "lab-linux-01",
+    "image": "/bin/bash",
+    "command_line": "bash -c 'echo synthetic-lab | bash'"
+  }
+]
