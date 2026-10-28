@@ -1,0 +1,20 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic PowerShell that runs a plain command, with no encoded-command flag.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 1,
+    "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "CommandLine": "powershell.exe -NoProfile -Command Get-Date",
+    "User": "LAB\\labuser"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic PowerShell -File start. A script path is not an encoded command.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 1,
+    "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "CommandLine": "powershell.exe -NoProfile -File C:\\Lab\\healthcheck.ps1",
+    "User": "LAB\\labuser"
+  }
+]

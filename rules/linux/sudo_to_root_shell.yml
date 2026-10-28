@@ -1,0 +1,38 @@
+title: Linux Sudo Root Shell
+id: 77ac898a-1fb3-45ef-b980-a837cbb837c3
+status: experimental
+description: |
+  Matches a sudo syslog line where the target user is root and the command is
+  a shell (su, bash, or sh). T1548.003 is the sudo elevation technique. This
+  event is also how an administrator opens a root shell on purpose. It does
+  not prove that sudoers was weakened or that a cached sudo timestamp was reused.
+  Failed sudo attempts are filtered when the line says so.
+references:
+  - https://attack.mitre.org/techniques/T1548/003/
+  - https://man7.org/linux/man-pages/man8/sudo.8.html
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: linux
+  service: auth
+  definition: sudo syslog body in message. process is sudo.
+detection:
+  selection_root:
+    process: sudo
+    message|contains: 'USER=root ;'
+  selection_shell:
+    message|re: 'COMMAND=(/usr)?/bin/(su|bash|sh)( |$)'
+  filter_failed:
+    message|contains:
+      - 'authentication failure'
+      - 'incorrect password'
+      - 'NOT in sudoers'
+      - 'command not allowed'
+  condition: selection_root and selection_shell and not filter_failed
+falsepositives:
+  - An administrator running sudo -i, sudo su, or sudo bash during maintenance.
+  - A break-glass account whose normal job is a root shell.
+level: medium
+tags:
+  - attack.privilege-escalation
+  - attack.t1548.003

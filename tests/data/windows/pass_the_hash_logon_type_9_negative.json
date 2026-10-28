@@ -1,0 +1,26 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic network logon type 3 with NTLM. That is not the type 9 pattern.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 4624,
+    "LogonType": 3,
+    "LogonProcessName": "NtLmSsp",
+    "AuthenticationPackageName": "NTLM",
+    "TargetUserName": "labadmin",
+    "IpAddress": "203.0.113.30",
+    "WorkstationName": "LAB-REMOTE"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic interactive console logon type 2.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 4624,
+    "LogonType": 2,
+    "LogonProcessName": "User32",
+    "AuthenticationPackageName": "Negotiate",
+    "TargetUserName": "labuser",
+    "IpAddress": "127.0.0.1",
+    "WorkstationName": "LAB-WIN-01"
+  }
+]

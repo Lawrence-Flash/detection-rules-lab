@@ -1,0 +1,35 @@
+title: Windows Pass the Hash Logon
+id: 7f1a4c4c-52f3-4019-a72b-cc6987d78a6c
+status: test
+description: |
+  Matches Security event 4624 logon type 9 (NewCredentials) where the logon
+  process is seclogo and the package is Negotiate. That combination is the
+  local logon pattern produced by pass-the-hash tools such as sekurlsa::pth.
+  Using a stolen hash to authenticate is T1550.002. In ATT&CK v20 that
+  technique sits under Lateral Movement only. A normal network logon
+  (type 3, NTLM) is not this pattern and is not a match. This rule does not
+  see every pass-the-hash, only this logon shape.
+references:
+  - https://attack.mitre.org/techniques/T1550/002/
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4624
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: windows
+  service: security
+  definition: Security event 4624. LogonType, LogonProcessName, and AuthenticationPackageName are the event fields.
+detection:
+  selection:
+    EventID: 4624
+    LogonType: 9
+    LogonProcessName: seclogo
+    AuthenticationPackageName: Negotiate
+  filter_machine:
+    TargetUserName|endswith: '$'
+  condition: selection and not filter_machine
+falsepositives:
+  - Software that creates a NewCredentials logon through the same process and package.
+level: high
+tags:
+  - attack.lateral-movement
+  - attack.t1550.002

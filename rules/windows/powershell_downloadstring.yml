@@ -1,0 +1,36 @@
+title: Windows PowerShell DownloadString
+id: 105fd89a-9a52-4b9d-9a9d-442138f63d13
+status: test
+description: |
+  Matches powershell.exe or pwsh.exe when the command line contains
+  DownloadString and an http URL. The interpreter is T1059.001 and the
+  transfer is T1105. Invoke-WebRequest and Invoke-RestMethod are not covered.
+  A DownloadString without a URL is not a match.
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+  - https://attack.mitre.org/techniques/T1105/
+  - https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: windows
+  category: process_creation
+  definition: Sysmon event 1 style fields. Image is the executable path. CommandLine is the full command line.
+detection:
+  selection_image:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_cradle:
+    CommandLine|contains|all:
+      - 'downloadstring'
+      - 'http'
+  condition: selection_image and selection_cradle
+falsepositives:
+  - An internal script that loads a published script with Net.WebClient.
+level: high
+tags:
+  - attack.execution
+  - attack.command-and-control
+  - attack.t1059.001
+  - attack.t1105

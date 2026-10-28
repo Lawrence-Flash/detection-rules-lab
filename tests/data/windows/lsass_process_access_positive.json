@@ -1,0 +1,12 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic Sysmon 10. labdump.exe opened lsass.exe with mask 0x1410.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 10,
+    "SourceImage": "C:\\Users\\Public\\labdump.exe",
+    "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+    "GrantedAccess": "0x1410",
+    "CallTrace": "C:\\Windows\\SYSTEM32\\ntdll.dll+9c534|C:\\Users\\Public\\labdump.exe+1a2b"
+  }
+]

@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate rules
+        run: python -m rulelab validate
+      - name: Rule tests
+        run: python -m rulelab test
+      - name: Coverage document is current
+        run: |
+          python -m rulelab coverage --output docs/coverage.md
+          git diff --exit-code docs/coverage.md
+
+  sigma:
+    name: sigma check and convert
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install optional Sigma tools
+        run: python -m pip install -r requirements-dev.txt
+      - name: sigma check
+        run: sigma check --fail-on-issues rules
+      - name: Example queries are current
+        run: |
+          python -m rulelab convert
+          git diff --exit-code examples

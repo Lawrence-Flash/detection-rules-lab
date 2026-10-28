@@ -1,0 +1,9 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic useradd success for a lab service account.",
+    "hostname": "lab-linux-01",
+    "process": "useradd",
+    "message": "new user: name=svc-lab, UID=1007, GID=1007, home=/home/svc-lab, shell=/bin/bash"
+  }
+]

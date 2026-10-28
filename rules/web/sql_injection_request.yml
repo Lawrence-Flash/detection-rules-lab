@@ -1,0 +1,37 @@
+title: Web SQL Injection Request
+id: 48855188-f29f-4899-9dca-b478343b68e7
+status: test
+description: |
+  Matches a web request whose URI carries a common SQL injection token, or
+  whose user agent is sqlmap. Exploiting a public web application is T1190.
+  sqlmap is included here, and not on the scanner rule, because that client
+  is built to exploit injection rather than to report vulnerabilities.
+  A page about "union" and "select" as separate words is not a match.
+references:
+  - https://attack.mitre.org/techniques/T1190/
+  - https://owasp.org/www-community/attacks/SQL_Injection
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  category: webserver
+  definition: Normalized access log. uri is the path and query. user_agent is the request User-Agent.
+detection:
+  selection_union:
+    uri|contains:
+      - 'union select'
+      - 'union all select'
+  selection_boolean:
+    uri|contains:
+      - "' or 1=1"
+      - "' or '1'='1"
+      - ' or 1=1--'
+  selection_sqlmap:
+    user_agent|contains: 'sqlmap'
+  condition: 1 of selection*
+falsepositives:
+  - A security test that sends these strings against an application the team owns.
+  - A search box that stores the literal text of a detection example.
+level: high
+tags:
+  - attack.initial-access
+  - attack.t1190

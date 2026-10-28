@@ -1,0 +1,23 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic 4732 adding an account to Remote Desktop Users (S-1-5-32-555), not Administrators.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 4732,
+    "SubjectUserName": "Administrator",
+    "MemberName": "LAB\\labuser",
+    "MemberSid": "S-1-5-21-1-2-3-1008",
+    "TargetUserName": "Remote Desktop Users",
+    "TargetSid": "S-1-5-32-555"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic 4733 removal from Administrators. Removal is not an addition.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 4733,
+    "SubjectUserName": "Administrator",
+    "MemberName": "LAB\\svc-lab",
+    "TargetUserName": "Administrators",
+    "TargetSid": "S-1-5-32-544"
+  }
+]

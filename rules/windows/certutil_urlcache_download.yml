@@ -1,0 +1,31 @@
+title: Windows Certutil Download
+id: 217f791d-31ce-4cb4-b17b-0a742bc2b71a
+status: test
+description: |
+  Matches certutil.exe when the command line uses urlcache and an http URL.
+  Copying a file onto the host this way is T1105. certutil -hashfile and
+  other local certutil uses are not a match. The rule does not cover
+  certutil -decode, bitsadmin, or curl.exe.
+references:
+  - https://attack.mitre.org/techniques/T1105/
+  - https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: windows
+  category: process_creation
+  definition: Sysmon event 1 style fields. Image is the executable path. CommandLine is the full command line.
+detection:
+  selection_image:
+    Image|endswith: '\certutil.exe'
+  selection_command:
+    CommandLine|contains|all:
+      - 'urlcache'
+      - 'http'
+  condition: selection_image and selection_command
+falsepositives:
+  - An internal script that downloads a published certificate or CRL with certutil.
+level: high
+tags:
+  - attack.command-and-control
+  - attack.t1105

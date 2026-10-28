@@ -1,0 +1,39 @@
+title: Windows Suspicious Scheduled Task
+id: b7450f30-10fa-48ce-a2a9-f9bb43bc3489
+status: experimental
+description: |
+  Matches Security event 4698 (a scheduled task was created) when the task
+  XML contains PowerShell, certutil, cmd.exe /c, or a path under Users\Public
+  or Windows\Temp. Creating a scheduled task is T1053.005. A task that runs
+  a normal program from Program Files is not a match. TaskContent here is the
+  task XML from the event. Real collectors sometimes store that XML under a
+  different field name.
+references:
+  - https://attack.mitre.org/techniques/T1053/005/
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4698
+author: Lawrence Tshabalala
+date: '2026-10-28'
+logsource:
+  product: windows
+  service: security
+  definition: Security event 4698. TaskName is the task path. TaskContent is the task XML.
+detection:
+  selection:
+    EventID: 4698
+  suspicious:
+    TaskContent|contains:
+      - '\Users\Public\'
+      - '\Windows\Temp\'
+      - 'powershell'
+      - 'certutil'
+      - 'cmd.exe /c'
+  condition: selection and suspicious
+falsepositives:
+  - Software that creates a scheduled task running PowerShell from a trusted path.
+  - An administrator publishing a temporary script from Public during a change.
+level: medium
+tags:
+  - attack.execution
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1053.005

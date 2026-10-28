@@ -1,0 +1,13 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic 4732 adding a lab account to local Administrators (SID S-1-5-32-544).",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 4732,
+    "SubjectUserName": "Administrator",
+    "MemberName": "LAB\\svc-lab",
+    "MemberSid": "S-1-5-21-1-2-3-1007",
+    "TargetUserName": "Administrators",
+    "TargetSid": "S-1-5-32-544"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic append of a fake public key. The key material is not a real key.",
+    "hostname": "lab-linux-01",
+    "image": "/bin/bash",
+    "command_line": "bash -c 'echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILabSyntheticKeyNotRealAAAA lab@lab.example >> /home/labuser/.ssh/authorized_keys'"
+  }
+]

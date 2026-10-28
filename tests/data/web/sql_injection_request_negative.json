@@ -1,0 +1,22 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic ordinary catalog request.",
+    "host": "lab-web.example",
+    "method": "GET",
+    "uri": "/catalog?id=1&sort=name",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "status": 200,
+    "client_ip": "198.51.100.10"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic search for the words union and select, not the token 'union select'.",
+    "host": "lab-web.example",
+    "method": "GET",
+    "uri": "/search?q=union membership selection",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "status": 200,
+    "client_ip": "198.51.100.11"
+  }
+]

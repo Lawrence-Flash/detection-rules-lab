@@ -1,0 +1,22 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic URI with a UNION SELECT token. 203.0.113.60 is TEST-NET-3.",
+    "host": "lab-web.example",
+    "method": "GET",
+    "uri": "/catalog?id=1 union select username, password from accounts--",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "status": 500,
+    "client_ip": "203.0.113.60"
+  },
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic request whose user agent names sqlmap. The URI itself is ordinary.",
+    "host": "lab-web.example",
+    "method": "GET",
+    "uri": "/catalog?id=1",
+    "user_agent": "sqlmap/1.8.5#stable (https://sqlmap.org)",
+    "status": 200,
+    "client_ip": "203.0.113.61"
+  }
+]

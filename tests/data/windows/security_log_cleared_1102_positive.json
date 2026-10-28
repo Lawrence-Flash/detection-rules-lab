@@ -1,0 +1,10 @@
+[
+  {
+    "synthetic": true,
+    "lab_note": "Synthetic Security event 1102. The log was cleared.",
+    "Computer": "LAB-WIN-01.example",
+    "Channel": "Security",
+    "EventID": 1102,
+    "SubjectUserName": "labadmin"
+  }
+]
